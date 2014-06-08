@@ -1,0 +1,125 @@
+<html ng-app="app">
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+</head>
+<body>
+<!-- view -->
+<!-- <div ng-controller="GreetingController">
+  <label>First Name</label>
+  <input ng-model="firstName" />
+
+  <label>Last Name</label>
+  <input ng-model="lastName" />
+
+  <h1>Hello <span ng-bind="firstName"></span>.</h1>
+
+  <button ng-click="greet(firstName, lastName)">Greet</button>
+
+
+  <input ng-model="names[1]" />
+
+  <ul>
+    <li ng-repeat="name in names">
+      {{name}}
+    </li>
+  </ul>
+</div> -->
+
+<!-- <div ng-controller="EventController">
+  <label>Event Name</label>
+  <input ng-model="eventName" />
+  <h1>Hello {{eventName}}</h1>
+
+  <button ng-click="greet(eventName)">Greet</button>
+
+  <div>{{greeting}}</div>
+</div> -->
+
+<div ng-controller="nameController">
+  <ul>
+    <li ng-repeat="person in people">
+      <input ng-model="person.name" />
+    </li>
+  </ul>
+
+<ul>
+  <li ng-repeat="person in people">
+    {{person.name}}
+  </li>
+</ul>
+</div>
+
+<!--
+Create a view for ng-controller="EventController"
+Create the EventController
+scope should contain eventName
+bind the eventName to an input and a span
+-->
+<script>
+angular.module('app', []);
+
+angular.module('app')
+.constant('MY_NAME', 'Cary');
+
+angular.module('app')
+.run(function ($log) {
+  $log.info('I don\'t have the runs!')
+});
+
+angular.module('app')
+.controller('nameController', function ($scope) {
+  $scope.people = [
+      {name: 'Cary'},
+      {name: 'John'},
+      {name: 'Greg'},
+    ]
+});
+
+angular.module('app')
+.controller('GreetingController', ['$log', '$scope', 'greetingService', 'nameService', 'MY_NAME', function ($log, $scope, greetingService, nameService, MY_NAME) {
+  $log.debug(nameService);
+
+  $scope.firstName = MY_NAME;
+  $scope.lastName = 'Landholt';
+
+  $scope.names = [
+    'Cary',
+    'John',
+    'Greg'
+  ];
+
+  // $scope.greet = greetingService.greet;
+  $scope.greet = nameService.greet;
+}]);
+
+
+angular.module('app')
+.service('nameService', function () {
+  this.greet = function (firstName, lastName) {
+    alert('Hey ' + firstName + ' ' + lastName);
+  };
+});
+
+angular.module('app')
+.service('nameService', function () {
+  this.greet = function (firstName, lastName) {
+    alert('Hey ' + firstName + ' ' + lastName);
+  }
+});
+
+angular.module('app')
+.service('greetingService', function () {
+  this.greet = function (name) {
+    alert('Hey ' + name);
+  }
+});
+
+
+angular.module('app')
+.controller('EventController', function ($scope, greetingService) {
+  $scope.eventName = 'AngularJS Workshop';
+  $scope.greet = greetingService.greet;
+});
+</script>
+</body>
+</html>

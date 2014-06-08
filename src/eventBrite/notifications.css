@@ -1,0 +1,19 @@
+.new-notification {
+	padding: 10px;
+	position: absolute;
+}
+
+.new-notification.ng-hide-add, .new-notification.ng-hide-remove {
+	transition:all linear 0.5s;
+	display: block!important;
+}
+
+.new-notification.ng-hide-add.ng-hide-add-active,
+.new-notification.ng-hide-remove {
+	opacity: 0;
+}
+
+.new-notification.ng-hide-add,
+.new-notification.ng-hide-remove.ng-hide-remove-active {
+	opacity: 1;
+}
